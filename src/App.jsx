@@ -44,7 +44,38 @@ const productData = [
 ];
 
 function App() {
-  return <div>HELLO, REACT</div>;
+  return <div>
+    <Header />
+    <Catalog />
+    <Footer />
+  </div>;
 }
+
+function Header() {
+  return (
+    <header>
+      <h1>Electronic Store</h1>
+    </header>
+  )
+}
+
+function Catalog() {
+  return (
+    <main>
+      <ul>
+        <Product />
+      </ul>
+    </main>
+  );
+}
+
+function Product() {
+  return <li>Product</li>
+}
+
+function Footer() {
+  return <footer>Footer is here</footer>
+}
+
 
 export default App;
