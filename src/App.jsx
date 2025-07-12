@@ -1,3 +1,5 @@
+import './index.css'
+
 const productData = [
   {
     name: "Laptop Pro",
@@ -52,17 +54,54 @@ function App() {
 }
 
 function Header() {
+const hour = new Date().getHours();
+const openHours = 9;
+const closeHours = 21;
+
+let isOpen = hour >= openHours && hour <= closeHours;
+
+
+
   return (
-    <header>
+    <header className="header">
       <h1>Electronic Store</h1>
+      <nav className="nav">
+        <ul>
+          <li>
+            {" "}
+            Home<a href="#home"></a>
+          </li>
+          <li>
+            {" "}
+            Catalog<a href="#catalog"></a>
+          </li>
+          <li>
+            {" "}
+            About us<a href="#about"></a>
+          </li>
+          <li>
+            {" "}
+            Contacts<a href="contacts"></a>
+          </li>
+        </ul>
+      </nav>
+      <div className="working-hours">
+        {isOpen ? (
+          <p>
+            We are currently open. Hours: {openHours}:00 - {closeHours}:00
+          </p>
+        ) : (
+          <p> We are currently closed</p>
+        )}
+      </div>
     </header>
-  )
+  );
 }
 
 function Catalog() {
   return (
-    <main>
-      <ul>
+    <main className='catalog'>
+      <ul className='products'>
         <Product />
       </ul>
     </main>
@@ -70,11 +109,20 @@ function Catalog() {
 }
 
 function Product() {
-  return <li>Product</li>
+  return (
+    <li className='product'>
+      <img src={productData[0].photoName} alt={productData[0].name} />
+      <div>
+        <h3>{productData[0].name}</h3>
+        <p>{productData[0].description}</p>
+        <span>{`${productData[0].price} $`}</span>
+      </div>
+    </li>
+  );
 }
 
 function Footer() {
-  return <footer>Footer is here</footer>
+  return <footer className='footer'>Footer is here</footer>
 }
 
 
