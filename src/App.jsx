@@ -100,22 +100,34 @@ let isOpen = hour >= openHours && hour <= closeHours;
 
 function Catalog() {
   return (
-    <main className='catalog'>
-      <ul className='products'>
-        <Product />
+    <main className="catalog">
+      <ul className="products">
+        <Product
+          name="Laptop Pro"
+          img="/laptop.png"
+          price="1200"
+          description="High-performance laptop for professionals."
+        />
+        <Product
+          name="Smartphone X"
+          img="/smartphone.png"
+          price="800"
+          description="Latest model with stunning display."
+        />
       </ul>
     </main>
   );
 }
 
-function Product() {
+function Product(props) {
+  const products = [...productData];
   return (
-    <li className='product'>
-      <img src={productData[0].photoName} alt={productData[0].name} />
+    <li className="product">
+      <img src={props.img} alt={props.name} />
       <div>
-        <h3>{productData[0].name}</h3>
-        <p>{productData[0].description}</p>
-        <span>{`${productData[0].price} $`}</span>
+        <h3>{props.name}</h3>
+        <p>{props.description}</p>
+        <span>{`${props.price} $`}</span>
       </div>
     </li>
   );
