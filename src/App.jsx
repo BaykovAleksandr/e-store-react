@@ -1,4 +1,4 @@
-import './index.css'
+import "./index.css";
 
 const productData = [
   {
@@ -46,21 +46,21 @@ const productData = [
 ];
 
 function App() {
-  return <div>
-    <Header />
-    <Catalog />
-    <Footer />
-  </div>;
+  return (
+    <div>
+      <Header />
+      <Catalog />
+      <Footer />
+    </div>
+  );
 }
 
 function Header() {
-const hour = new Date().getHours();
-const openHours = 9;
-const closeHours = 21;
+  const hour = new Date().getHours();
+  const openHours = 9;
+  const closeHours = 21;
 
-let isOpen = hour >= openHours && hour <= closeHours;
-
-
+  let isOpen = hour >= openHours && hour <= closeHours;
 
   return (
     <header className="header">
@@ -102,7 +102,10 @@ function Catalog() {
   return (
     <main className="catalog">
       <ul className="products">
-        <Product
+        {productData.map((item) => (
+          <Product productObj={item} />
+        ))}
+        {/* <Product
           name="Laptop Pro"
           img="/laptop.png"
           price="1200"
@@ -113,29 +116,30 @@ function Catalog() {
           img="/smartphone.png"
           price="800"
           description="Latest model with stunning display."
-        />
+        /> */}
       </ul>
     </main>
   );
 }
 
-function Product(props) {
-  const products = [...productData];
+function Product({ productObj }) {
   return (
-    <li className="product">
-      <img src={props.img} alt={props.name} />
+    <li className={`product ${productObj.soldOut ? "sold-out" : ""}`}>
+      <img src={productObj.photoName} alt={productObj.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.description}</p>
-        <span>{`${props.price} $`}</span>
+        <h3>{productObj.name}</h3>
+        <p>{productObj.description}</p>
+        <span>
+          {productObj.soldOut ? "SOLD OUT" : `${productObj.price} $`}
+          
+        </span>
       </div>
     </li>
   );
 }
 
 function Footer() {
-  return <footer className='footer'>Footer is here</footer>
+  return <footer className="footer">Footer is here</footer>;
 }
-
 
 export default App;
